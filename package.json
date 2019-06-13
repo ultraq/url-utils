@@ -1,0 +1,38 @@
+{
+	"name": "@ultraq/url-utils",
+	"version": "0.1.0",
+	"description": "A collection of utilities for working with URLs",
+	"author": "Emanuel Rabina <emanuelrabina@gmail.com> (http://www.ultraq.net.nz/)",
+	"license": "Apache-2.0",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/ultraq/url-utils.git"
+	},
+	"keywords": [
+		"url",
+		"utilities",
+		"join"
+	],
+	"module": "url-utils.es.js",
+	"main": "url-utils.cjs.js",
+	"scripts": {
+		"lint": "eslint '*.js'",
+		"test": "npm run lint && jest",
+		"coverage": "cat ./coverage/lcov.info | coveralls",
+		"build": "npm run build:cjs && npm run build:es",
+		"build:cjs": "BABEL_ENV=cjs babel url-utils.js --out-file url-utils.cjs.js --source-maps",
+		"build:es": "BABEL_ENV=es babel url-utils.js --out-file url-utils.es.js --source-maps",
+		"prepublishOnly": "npm run build"
+	},
+	"devDependencies": {
+		"@babel/cli": "^7.4.4",
+		"@babel/preset-env": "^7.4.5",
+		"coveralls": "^3.0.4",
+		"eslint": "^5.16.0",
+		"eslint-config-ultraq": "^2.2.0",
+		"jest": "^24.8.0"
+	},
+	"engines": {
+		"node": ">=8.0.0"
+	}
+}
