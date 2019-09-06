@@ -42,3 +42,34 @@ export function join(...urlParts) {
 		.map((urlPart, index) => endsWith(urlPart, '/') && index !== urlParts.length - 1 ? urlPart.slice(0, -1) : urlPart)
 		.join('/');
 }
+
+/**
+ * Convert an object to a URL query parameter string.
+ * 
+ * @param {Object} object
+ * @return {String}
+ *   A value that can be used as a search string, minus a leading `?`.
+ */
+export function objectToSearchString(object) {
+	return Object.keys(object)
+		.filter(key => object[key] != null) // eslint-disable-line eqeqeq
+		.map(key => `${key}=${encodeURIComponent(object[key]).replace('%20', '+')}`)
+		.join('&');
+}
+
+/**
+ * Convert URL query parameters to an object.
+ * 
+ * @param {String} searchString
+ * @return {Object}
+ *   An object whose keys/values are the keys/values of the search string.
+ */
+export function searchStringToObject(searchString) {
+	return searchString.replace(/^\?/, '').split('&')
+		.map(param => param.split('='))
+		// Would have liked to use `[key, value]`, but Babel converts it to something requiring Symbol
+		.reduce((acc, paramParts) => {
+			acc[paramParts[0]] = decodeURIComponent(paramParts[1].replace('+', '%20'));
+			return acc;
+		}, {});
+}

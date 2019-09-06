@@ -32,3 +32,17 @@ The first URL will retain any leading slash, and the last URL will retain any
 trailing slash.
 
  - **urlParts**: argument list of URL parts to combine
+
+### objectToSearchString(object)
+
+Convert an object to a URL query parameter string, minus a leading `?`.
+
+ - **object**: Object whose key/value pairs are converted to `key=value` URL
+   parameters, joined by `&`s.
+
+### searchStringToObject(searchString)
+
+Convert URL query parameters to an object.
+
+ - **searchString**: String where `key=value` is converted to object keys/values,
+   pairs separated by `&`s and ignoring any leading `?`.

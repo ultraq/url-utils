@@ -15,7 +15,10 @@
  */
 
 /* eslint-env jest */
-import {join} from './url-utils.js';
+import {
+	join,
+	objectToSearchString, searchStringToObject
+} from './url-utils.js';
 
 /**
  * Tests for the URL utilities.
@@ -56,6 +59,42 @@ describe('url-utils', function() {
 				'/there/'
 			);
 			expect(result).toBe('hello/there/');
+		});
+	});
+
+	describe('#objectToSearchString', function() {
+
+		test('Maps object keys/values into search string keys/values', function() {
+			const object = {
+				greeting: 'Hello',
+				animal: 'Seal',
+				chonkiness: 'Oh lawd'
+			};
+			let result = objectToSearchString(object);
+			expect(result).toBe('greeting=Hello&animal=Seal&chonkiness=Oh+lawd');
+		});
+
+		test('null/undefined values are not included in the resulting search string', function() {
+			const object = {
+				greeting: 'Hello',
+				animal: null,
+				chonkiness: undefined
+			};
+			let result = objectToSearchString(object);
+			expect(result).toBe('greeting=Hello');
+		});
+	});
+
+	describe('#searchStringToObject', function() {
+
+		test('Maps keys/values of a search string to an object', function() {
+			const searchString = '?greeting=Hello&animal=Seal&chonkiness=Oh+lawd';
+			let result = searchStringToObject(searchString);
+			expect(result).toEqual({
+				greeting: 'Hello',
+				animal: 'Seal',
+				chonkiness: 'Oh lawd'
+			});
 		});
 	});
 });
