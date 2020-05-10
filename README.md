@@ -5,7 +5,6 @@ url-utils
 [![Build Status](https://travis-ci.com/ultraq/url-utils.svg?branch=master)](https://travis-ci.com/ultraq/url-utils)
 [![Coverage Status](https://coveralls.io/repos/github/ultraq/url-utils/badge.svg?branch=master)](https://coveralls.io/github/ultraq/url-utils?branch=master)
 [![npm](https://img.shields.io/npm/v/@ultraq/url-utils.svg?maxAge=3600)](https://www.npmjs.com/package/@ultraq/url-utils)
-[![License](https://img.shields.io/github/license/ultraq/url-utils.svg?maxAge=2592000)](https://github.com/ultraq/url-utils/blob/master/LICENSE.txt)
 
 A collection of utilities for working with URLs.
 
