@@ -17,8 +17,9 @@
 	],
 	"module": "url-utils.es.js",
 	"main": "url-utils.cjs.js",
+	"sideEffects": false,
 	"scripts": {
-		"lint": "eslint '*.js'",
+		"lint": "eslint \"*.js\"",
 		"test": "jest",
 		"coverage": "cat ./coverage/lcov.info | coveralls",
 		"build": "npm run build:cjs && npm run build:es",
